@@ -2,6 +2,10 @@
 
 Cuaca kota, langsung di browser. Cari nama kota atau pakai lokasimu, lalu lihat suhu, angin, dan prakiraan. Langit di halaman ikut berubah: cerah, mendung, hujan, badai, salju, atau kabut.
 
+## Tampilan
+
+![Tampilan aplikasi Cuaca](tampilan.png)
+
 ## Fitur
 
 - Cuaca saat ini: suhu, terasa seperti, kelembapan, angin, hujan, UV, dan waktu matahari
@@ -14,8 +18,6 @@ Cuaca kota, langsung di browser. Cari nama kota atau pakai lokasimu, lalu lihat 
 ## Cara menjalankan
 
 Buka `index.html` di browser. Butuh koneksi internet.
-
-Kalau cuacanya tidak muncul, browser itu memblokir permintaan dari file yang dibuka langsung. Dari folder ini, jalankan `py -m http.server` lalu buka `http://localhost:8000`.
 
 Kalau cuacanya tidak muncul, browser itu memblokir permintaan dari file yang dibuka langsung. Dari folder ini, jalankan `py -m http.server` lalu buka `http://localhost:8000`.
 
