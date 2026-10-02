@@ -4,7 +4,8 @@ Cuaca kota, langsung di browser. Cari nama kota atau pakai lokasimu, lalu lihat 
 
 ## Tampilan
 
-![Tampilan aplikasi Cuaca](tampilan.png)
+<img width="1920" height="1702" alt="screencapture-localhost-8765-2026-10-02-23_31_59" src="https://github.com/user-attachments/assets/389d186b-1390-496d-8593-1a59f9ccb3ea" />
+
 
 ## Fitur
 
