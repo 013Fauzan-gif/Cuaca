@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaca</title>
+    <meta name="description" content="Cuaca kota saat ini, prakiraan 24 jam, dan tujuh hari ke depan. Langit di halaman ikut berubah.">
+    <meta name="theme-color" content="#10151d">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛅</text></svg>">
+</head>
+<body class="scene-berawan malam gelap">
+    <div class="langit" aria-hidden="true">
+        <div class="bintang-bungkus"><div class="bintang" id="bintang"></div></div>
+        <div class="awan awan-1"></div>
+        <div class="awan awan-2"></div>
+        <div class="awan awan-3"></div>
+        <div class="awan awan-4"></div>
+        <div class="hujan" id="hujan"></div>
+        <div class="salju" id="salju"></div>
+        <div class="kilat"></div>
+        <div class="kabut-lapis"></div>
+    </div>
+
+    <main class="halaman">
+        <header class="atas">
+            <p class="merek">Cuaca</p>
+            <form class="cari" id="formulir" role="search" autocomplete="off">
+                <svg class="kaca-pembesar" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.25" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M16 16.5L20 20.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <label class="sr-only" for="kolom">Cari kota</label>
+                <input id="kolom" type="search" placeholder="Cari kota, misalnya Bandung" aria-autocomplete="list" aria-controls="saran" aria-expanded="false" enterkeyhint="search" spellcheck="false">
+                <button class="tombol ikon" id="lokasi" type="button" aria-label="Gunakan lokasiku">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        <circle cx="12" cy="12" r="7.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M12 2.4v2.3M12 19.3v2.3M2.4 12h2.3M19.3 12h2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <ul class="saran" id="saran" role="listbox" hidden></ul>
+            </form>
+        </header>
+
+        <section class="panggung" id="panggung" aria-labelledby="kota">
+            <div class="naskah">
+                <h1 class="kota" id="kota">Cuaca</h1>
+                <p class="wilayah" id="wilayah"></p>
+                <p class="tanggal"><span id="tanggal"></span><span class="pemisah" id="pemisah" hidden aria-hidden="true">·</span><time id="jam"></time></p>
+                <div class="suhu-baris">
+                    <div class="ikon-besar" id="ikon"></div>
+                    <p class="suhu"><span id="angka">--</span><span class="derajat">°</span></p>
+                </div>
+                <p class="kondisi" id="kondisi">Membaca langit…</p>
+                <p class="ringkas" id="ringkas"></p>
+            </div>
+            <div class="benda" aria-hidden="true">
+                <div class="matahari">
+                    <div class="sinar"></div>
+                    <div class="inti"></div>
+                </div>
+                <div class="bulan"></div>
+            </div>
+        </section>
+
+        <div class="status" id="status" hidden role="status">
+            <p id="status-teks"></p>
+            <button class="tombol" id="coba-lagi" type="button" hidden>Coba lagi</button>
+        </div>
+        <p id="pembaca" class="sr-only" aria-live="polite"></p>
+
+        <section class="lembar" id="lembar" hidden>
+            <div class="statistik">
+                <article class="kartu">
+                    <h2>Terasa seperti</h2>
+                    <p class="nilai" id="terasa">—</p>
+                    <p class="rinci" id="terasa-rinci"></p>
+                </article>
+                <article class="kartu">
+                    <h2>Kelembapan</h2>
+                    <p class="nilai" id="lembab">—</p>
+                    <p class="rinci" id="lembab-rinci"></p>
+                </article>
+                <article class="kartu">
+                    <h2>Angin</h2>
+                    <p class="nilai nilai-angin"><span id="angin">—</span> <i class="kompas" id="kompas" aria-hidden="true"></i></p>
+                    <p class="rinci" id="angin-rinci"></p>
+                </article>
+                <article class="kartu">
+                    <h2>Hujan hari ini</h2>
+                    <p class="nilai" id="hujan-nilai">—</p>
+                    <p class="rinci" id="hujan-rinci"></p>
+                </article>
+                <article class="kartu">
+                    <h2>Indeks UV</h2>
+                    <p class="nilai" id="uv">—</p>
+                    <p class="rinci" id="uv-rinci"></p>
+                </article>
+                <article class="kartu">
+                    <h2>Matahari</h2>
+                    <p class="nilai" id="terbit">—</p>
+                    <p class="rinci" id="terbenam"></p>
+                </article>
+            </div>
+
+            <section class="bagian" aria-labelledby="judul-jam">
+                <h2 id="judul-jam">24 jam ke depan</h2>
+                <ul class="jam-daftar" id="jam-daftar"></ul>
+            </section>
+
+            <section class="bagian" aria-labelledby="judul-hari">
+                <h2 id="judul-hari">Tujuh hari</h2>
+                <ul class="hari-daftar" id="hari-daftar"></ul>
+            </section>
+        </section>
+
+        <footer class="kaki">
+            <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Data cuaca dari Open-Meteo</a>
+        </footer>
+    </main>
+    <noscript><p class="status status-galat">Cuaca butuh JavaScript untuk mengambil data.</p></noscript>
+    <script src="script.js"></script>
+</body>
+</html>
